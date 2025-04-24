@@ -1,1 +1,9 @@
-<p>event-bind-example works!</p>
+<h4>Event Bind Example</h4>
+<div class="d-flex flex-column gap-2 w-25">
+    <div class="d-flex gap-2 align-items-center">
+        <button (click)="decrementTimes()" class="btn btn-primary btn-sm flex-grow-1" > - </button>
+        <span>{{times}}</span>
+        <button class="btn btn-primary btn-sm flex-grow-1" (click)="incrementTimes()"> + </button>
+    </div>
+    <button class="btn btn-primary btn-sm flex-grow-1" (click)="reset()"> Reset </button>
+</div>

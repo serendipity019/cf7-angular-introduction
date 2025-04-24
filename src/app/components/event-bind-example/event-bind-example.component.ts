@@ -7,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrl: './event-bind-example.component.css'
 })
 export class EventBindExampleComponent {
+  times:number = 0;
+  userInput: string = "";  
 
+  incrementTimes() {
+    this.times = this.times + 1;
+  }
+
+  decrementTimes() {
+    this.times--;
+  }
+
+  reset() {
+    this.times = 0;
+  }
 }
