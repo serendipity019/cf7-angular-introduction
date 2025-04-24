@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Person } from 'src/app/shared/interfaces/person';
 
 @Component({
   selector: 'app-person-tab',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './person-tab.component.css'
 })
 export class PersonTabComponent {
-  name = "Thanos"
+  @Input() personInput: Person | undefined;
+
+  name = "Thanos";
 
   person = {
     givenName: "Thanasis",
