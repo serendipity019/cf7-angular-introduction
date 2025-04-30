@@ -17,6 +17,9 @@ export class ListGroupMenuComponent {
      },
      { text: 'Event Bind Example',
       linkName: 'event-bind-example'
+     },
+     { text: 'Simple Datatable Example',
+      linkName: 'simple-datatable-example'
      }
   ]
 }
