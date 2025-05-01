@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { EPerson } from 'src/app/shared/interfaces/eperson';
 
 @Component({
   selector: 'app-simple-datatable',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './simple-datatable.component.css'
 })
 export class SimpleDatatableComponent {
-
+  @Input() data: EPerson[] | undefined;
 }
