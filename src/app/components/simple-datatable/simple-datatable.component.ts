@@ -22,4 +22,8 @@ export class SimpleDatatableComponent {
     email: 'none',
     education: 'none'
   }
+
+  sortData(sortKey: keyof EPerson) {
+    console.log(sortKey);
+  }
 }
