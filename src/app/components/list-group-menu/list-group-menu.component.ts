@@ -12,6 +12,10 @@ export class ListGroupMenuComponent {
     { text: 'Component Input Example',
       linkName: 'component-input-example'
      },
+     {
+      text: 'Component Output Example',
+      linkName: 'component-output-example'
+     },
      { text: '@for Directive Example',
       linkName: 'for-directive-example'
      },
