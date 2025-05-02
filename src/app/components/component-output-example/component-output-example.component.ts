@@ -5,7 +5,7 @@ import {Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog
 
 @Component({
   selector: 'app-component-output-example',
-  imports: [SimpleDatatableComponent],
+  imports: [SimpleDatatableComponent, DialogModule],
   templateUrl: './component-output-example.component.html',
   styleUrl: './component-output-example.component.css'
 })

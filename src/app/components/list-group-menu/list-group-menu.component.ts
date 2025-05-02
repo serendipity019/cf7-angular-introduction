@@ -24,6 +24,10 @@ export class ListGroupMenuComponent {
      },
      { text: 'Simple Datatable Example',
       linkName: 'simple-datatable-example'
+     },
+     {
+      text: 'Template Driven Form Example',
+      linkName: 'template-driven-form-example'
      }
   ]
 }
