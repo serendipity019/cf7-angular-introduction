@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { EPerson } from 'src/app/shared/interfaces/eperson';
 import { Person } from 'src/app/shared/interfaces/person';
 
 @Component({
@@ -8,7 +9,8 @@ import { Person } from 'src/app/shared/interfaces/person';
   styleUrl: './person-tab.component.css'
 })
 export class PersonTabComponent {
-  @Input() personInput: Person | undefined;
+  @Input() personInput: Person | EPerson |undefined;
+  addressOReducation: string = ""; 
 
   name = "Thanos";
 
@@ -17,5 +19,21 @@ export class PersonTabComponent {
     surname: "Androutsos",
     age: 48,
     email: "thanasis@aueb.gr"
+  }
+
+  isPerson(): boolean {
+    if (this.personInput && 'address' in this.personInput) {
+     this.addressOReducation = this.personInput.address; 
+     return this.personInput && 'address' in this.personInput; 
+    } 
+    return false; 
+  }
+
+  isEPerson(): boolean {
+    if (this.personInput && 'education' in this.personInput) {
+      this.addressOReducation = this.personInput.education;
+      return 'education' in this.personInput;
+    }
+    return false; 
   }
 }
