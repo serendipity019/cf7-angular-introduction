@@ -1,1 +1,44 @@
-<p>eperson-template-driven-form works!</p>
+<div class="d-flex flex-column"> 
+  <h5>New Person Form</h5>  
+  <form #educForm="ngForm" class="d-flex flex-column">
+    <mat-form-field>
+        <mat-label>Firstname</mat-label>
+        <input type="text" name="givenName" matInput ngModel required #givenName="ngModel"/>
+        <mat-error>Firstname is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input type="text" name="surname" matInput required ngModel #surname="ngModel"/>
+        <mat-error>Lastname is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input type="number" name="age" min="18" max="100" matInput required ngModel #age="ngModel"/>
+        <mat-error>Age is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="text" name="email" matInput required ngModel #email="ngModel" 
+        pattern="[a-ZA-Z0-9\.\-]+@[a-ZA-Z0-9\.\-]+\.[a-ZA-Z]{2,}"/>
+        @if (email.errors && email.errors['required']) {
+            <mat-error>Email is required</mat-error>
+        }
+        @if (email.errors && email.errors['pattern']) {
+            <mat-error>Invalid email</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Education</mat-label>
+       <mat-select name="education" required ngModel #education="ngModel">
+        <mat-option value="Some college, no degree">Some college, no degree</mat-option>
+        <mat-option value="Master's degree">Master's degree</mat-option>
+        <mat-option value="Bachelor's degree">Bachelor's degree</mat-option>
+        <mat-option value="No formal education">No formal education</mat-option>
+       </mat-select>
+        <mat-error>Education is required</mat-error>
+    </mat-form-field>
+  </form>
+  <button mat-flat-button color="primary" [disabled]="educForm.invalid" (click)="onSubmit(educForm.value)" >Submit</button>
+  <button (click)="onSetValue()">Set Value</button>
+  <!-- {{educForm.value| json }} -->
+</div>

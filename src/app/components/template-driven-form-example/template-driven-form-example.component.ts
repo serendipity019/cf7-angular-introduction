@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EpersonTemplateDrivenFormComponent } from '../eperson-template-driven-form/eperson-template-driven-form.component';
 import { PersonTabComponent } from '../person-tab/person-tab.component';
 import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.component';
+import { EPerson } from 'src/app/shared/interfaces/eperson';
 
 @Component({
   selector: 'app-template-driven-form-example',
@@ -10,5 +11,10 @@ import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.c
   styleUrl: './template-driven-form-example.component.css'
 })
 export class TemplateDrivenFormExampleComponent {
+  persons: EPerson[] = []; 
 
+  onPerson(person: EPerson) {
+    this.persons.push(person);
+    console.log("Father", this.persons);
+  }
 }

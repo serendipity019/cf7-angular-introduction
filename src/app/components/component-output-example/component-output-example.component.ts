@@ -69,7 +69,7 @@ export class ComponentOutputExampleComponent {
       background:#fff;
       border-radius: 8px;
       padding: 16px;
-      mac-width: 500px;
+      max-width: 500px;
     }
     `
   ]
