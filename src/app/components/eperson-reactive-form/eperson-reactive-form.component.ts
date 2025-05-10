@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -18,6 +18,8 @@ import { EPerson } from 'src/app/shared/interfaces/eperson';
   styleUrl: './eperson-reactive-form.component.css'
 })
 export class EpersonReactiveFormComponent {
+  @Output() person = new EventEmitter<EPerson>();
+
   ePersonForm = new FormGroup({
     givenName: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
@@ -31,8 +33,38 @@ export class EpersonReactiveFormComponent {
     education: new FormControl('', Validators.required)
   }); 
 
-  onSubmit(data:any) {
-    console.log("Data", data);
+  // Second way more discraidable for the type of data  
+  // ePersonForm = new FormGroup<{
+  //   givenName: FormControl<string>,
+  //   surname: FormControl<string>,
+  //   age: FormControl<number>,
+  //   email: FormControl<string>,
+  //   education: FormControl<string>,
+  // }> ({
+  //   givenName: new FormControl('', {nonNullable:true, validators: Validators.required}),
+  //   surname: new FormControl('', {nonNullable:true, validators: Validators.required}),
+  //   age: new FormControl(18, {nonNullable:true,
+  //      validators: [Validators.required, Validators.pattern('[0-9]*$'),
+  //           Validators.min(18),
+  //           Validators.max(100) ]}),
+  //   email: new FormControl('', {nonNullable:true, validators: [Validators.required, Validators.email]}),
+  //   education: new FormControl('', {nonNullable:true, validators: Validators.required})
+  // });
+
+  onSubmit() {
+    if (this.ePersonForm.valid) {
+      console.log(this.ePersonForm.value);
+      const person: EPerson = {
+        givenName:this.ePersonForm.value.givenName ?? '',
+        surname: this.ePersonForm.value.surname ?? '',
+        age: String(this.ePersonForm.value.age) ?? '',
+        email: this.ePersonForm.value.email ?? '',
+        education: this.ePersonForm.value.education ?? ''
+      }
+      this.person.emit(person);
+      this.ePersonForm.reset(); 
+    }
+    //console.log("Data", data);
     console.log(this.ePersonForm);
     // console.log("givenName>>", this.ePersonForm.controls['givenName'].value);
     // this.ePersonForm.controls["surname"].setValue("Papakis"); 
