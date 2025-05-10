@@ -28,6 +28,8 @@ export class ListGroupMenuComponent {
      {
       text: 'Template Driven Form Example',
       linkName: 'template-driven-form-example'
-     }
+     },
+     {text: 'Reactive Form Example', 
+      linkName: 'reactive-form-example'}
   ]
 }
