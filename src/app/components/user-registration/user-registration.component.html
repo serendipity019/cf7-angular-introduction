@@ -1,1 +1,55 @@
-<p>user-registration works!</p>
+<h4>User Registration Example</h4>
+
+<div class="d-flex flex-column mt-2 w-50">
+    <form class="d-flex flex-column">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input type="text" matInput>
+            <mat-error>Username is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Firstname</mat-label>
+            <input type="text" matInput>
+            <mat-error>Firstname is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Lastname</mat-label>
+            <input type="text" matInput>
+            <mat-error>Lastname is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput>
+            <mat-error>Email is missing or invalid</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Area</mat-label>
+            <input type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Road</mat-label>
+            <input type="text" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput>
+            <mat-error>Password is missing or invalid</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Confirm password</mat-label>
+            <input type="password" matInput>
+            <mat-error>Confirm password mismatch or missing</mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary">Register</button>
+    </form>
+</div>
+
+<button mat-flat-button color="primary" class="mt-2">Register Another User</button>

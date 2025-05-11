@@ -33,6 +33,10 @@ export class ListGroupMenuComponent {
       linkName: 'reactive-form-example'},
       {text: 'Http Client Example',
         linkName: 'http-client-example'
+      },
+      {
+        text:'User Registration Component', 
+        linkName: 'user-registration-example'
       }
   ]
 }
