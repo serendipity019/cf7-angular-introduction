@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output, effect, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges, effect, inject } from '@angular/core';
 import { EPerson } from 'src/app/shared/interfaces/eperson';
 import {sortBy} from 'lodash-es'; 
-import { PersonService } from 'src/app/shared/services/person.service';
+// import { PersonService } from 'src/app/shared/services/person.service';
 
 @Component({
   selector: 'app-simple-datatable',
@@ -11,21 +11,34 @@ import { PersonService } from 'src/app/shared/services/person.service';
 })
 export class SimpleDatatableComponent {
   @Input() data: EPerson[] | undefined;
+  @Input() myData: boolean = true;
   @Output() personClicked = new EventEmitter<EPerson>();
 
-  personService = inject(PersonService);
+  //personService = inject(PersonService);
 
   ePersonsData: EPerson[] | undefined = [];
 
-  constructor() {
-    effect(() => {
-      if(this.personService.modifiedDataTable()) {
-        console.log('Signal', this.data);
-        this.ePersonsData = this.data; 
-      }
-      this.personService.modifiedDataTable.set(false); 
-    })
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['data'] && this.data) {
+      console.log("ngOnChanges", this.data);
+    this.ePersonsData = this.data;
+    }
+
+    if (changes['myData']) {
+      console.log("MyData");
+      // this.myFunction();
+    }
   }
+
+  // constructor() {
+  //   effect(() => {
+  //     if(this.personService.modifiedDataTable()) {
+  //       console.log('Signal', this.data);
+  //       this.ePersonsData = this.data; 
+  //     }
+  //     this.personService.modifiedDataTable.set(false); 
+  //   })
+  // }
 
   onPersonClicked(person:EPerson) {
     console.log("Person>>", person);
@@ -41,8 +54,8 @@ export class SimpleDatatableComponent {
   }
 
   sortData(sortKey: keyof EPerson): void {
-    //console.log(sortKey);
-    this.ePersonsData = this.data;
+    // console.log(sortKey);
+    // this.ePersonsData = this.data;
     if(this.sortOrder[sortKey]==='asc') {
       this.sortOrder[sortKey]= 'desc';
       this.ePersonsData = sortBy(this.data, sortKey).reverse();
