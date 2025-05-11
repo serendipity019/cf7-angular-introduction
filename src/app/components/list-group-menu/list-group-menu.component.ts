@@ -30,6 +30,9 @@ export class ListGroupMenuComponent {
       linkName: 'template-driven-form-example'
      },
      {text: 'Reactive Form Example', 
-      linkName: 'reactive-form-example'}
+      linkName: 'reactive-form-example'},
+      {text: 'Http Client Example',
+        linkName: 'http-client-example'
+      }
   ]
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, effect, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, effect, inject } from '@angular/core';
 import { EPerson } from 'src/app/shared/interfaces/eperson';
 import {sortBy} from 'lodash-es'; 
 // import { PersonService } from 'src/app/shared/services/person.service';
@@ -9,7 +9,7 @@ import {sortBy} from 'lodash-es';
   templateUrl: './simple-datatable.component.html',
   styleUrl: './simple-datatable.component.css'
 })
-export class SimpleDatatableComponent {
+export class SimpleDatatableComponent implements OnChanges{
   @Input() data: EPerson[] | undefined;
   @Input() myData: boolean = true;
   @Output() personClicked = new EventEmitter<EPerson>();
