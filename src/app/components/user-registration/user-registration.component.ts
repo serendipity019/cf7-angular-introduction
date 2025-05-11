@@ -15,7 +15,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 export class UserRegistrationComponent {
   registrationForm = new FormGroup({
     username: new FormControl('', Validators.required),
-    firsrname: new FormControl('', Validators.required),
+    firstname: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     address: new FormGroup({
