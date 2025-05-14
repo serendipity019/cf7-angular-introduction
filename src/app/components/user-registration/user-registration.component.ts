@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
 import { UserService } from 'src/app/shared/services/user.service';
+import { User } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-user-registration',
@@ -15,6 +16,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class UserRegistrationComponent {
   userService = inject(UserService);
+
+  registrationStatus: {success: boolean, message: string} = {
+    success: false,
+    message: 'Not attempted yet'
+  }
 
   registrationForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -44,8 +50,30 @@ export class UserRegistrationComponent {
   }  
 
   onSubmit() {
-    const data = this.registrationForm.value;
+    // const data = this.registrationForm.value as User; // Because have and the confirm data we will make this below.
+    const data: User = {
+      'username': this.registrationForm.get('username')?.value || '',
+      'password': this.registrationForm.get('password')?.value || '',
+      'name': this.registrationForm.get('name')?.value ||  '',
+      'surname': this.registrationForm.get('surname')?.value || '',
+      'email': this.registrationForm.get('email')?.value || '',
+      'address': {
+        'area': this.registrationForm.controls.address.get('area')?.value || '',
+        'road': this.registrationForm.controls.address.get('road')?.value || ''
+      }
+    }
     console.log(data); 
+    this.userService.registerUser(data)
+    .subscribe({
+      next: (response) => {
+        console.log("User Saved", response);
+        this.registrationStatus = {success: true, message: "User registrered "}
+      },
+      error: (response) => {
+        console.log("User not Saved", response);
+        this.registrationStatus = {success: false, message: response.data}
+      }
+    })
   }
 
   checkDuplicateEmails(){
@@ -65,5 +93,10 @@ export class UserRegistrationComponent {
           }
         })
     }
+  }
+
+  registerAnother() {
+    this.registrationForm.reset();
+    this.registrationStatus = {success:false, message: "Not attempted yet"}
   }
 }
