@@ -1,5 +1,5 @@
 <h4>User Registration Example</h4>
-@if (registrationStatus.message === "Not attepted yet") {
+@if (registrationStatus.message === "Not attempted yet") {
     <div class="d-flex flex-column mt-2 w-50">
         <form [formGroup]="registrationForm" class="d-flex flex-column">
             <mat-form-field>
@@ -25,11 +25,9 @@
                 <input type="email" matInput formControlName="email" (blur)="checkDuplicateEmails()">
                 @if(registrationForm.get('email')?.hasError('duplicateEmail')) {
                     <mat-error>Email is already registered</mat-error>
-                } @else {
-                    @if(registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched) {
+                } @else if(registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched) {
                         <mat-error>Email is missing or invalid</mat-error>
-                    }
-                }           
+                    }                           
             </mat-form-field>
     
             <div class="d-flex gap-2" formGroupName="address">
@@ -59,11 +57,9 @@
               
                     @if(registrationForm.get("confirmPassword")?.hasError("passwordMismatch")){
                         <mat-error>Password do not match</mat-error>
-                    }@else {
-                        @if(registrationForm.get("confirmPassword")?.invalid && registrationForm.get("confirmPassword")?.touched){
+                    }@else if(registrationForm.get("confirmPassword")?.invalid && registrationForm.get("confirmPassword")?.touched){
                             <mat-error>Confirm password is invalid or missing</mat-error>
-                        } 
-                }
+                        }                 
             </mat-form-field>
     
             <button mat-flat-button color="primary"

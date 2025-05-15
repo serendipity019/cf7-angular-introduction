@@ -37,6 +37,7 @@ export class ListGroupMenuComponent {
       {
         text:'User Registration Component', 
         linkName: 'user-registration-example'
-      }
+      },
+      {text:'User Login', linkName:'login'}
   ]
 }
