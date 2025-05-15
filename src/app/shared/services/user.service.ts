@@ -73,6 +73,17 @@ export class UserService {
     }
   }
 
-  redirectToGoogleLogin(){}
+  redirectToGoogleLogin(){
+    const clientId = '278081930490-9juu7pngn44v8cm57ed6vpvsafrt6nq5.apps.googleusercontent.com';
+    const redirectUri = 'http://localhost:3000/api/auth/google/callback';
+    const scope = 'email profile';
+    const responseType = 'code';
+    const accessType = 'offline';
+
+    const url = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&access_type=${accessType}`;
+
+    // here we call the location of google account
+    window.location.href = url; 
+  }
 }
 // https://accounts.google.com/o/oauth2/auth?client_id=278081930490-9juu7pngn44v8cm57ed6vpvsafrt6nq5.apps.googleusercontent.com&redirect_uri=http://localhost:3000/api/auth/google/callback&response_type=code&scope=email%20profile&access_type=offline 
