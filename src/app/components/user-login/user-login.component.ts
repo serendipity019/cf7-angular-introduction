@@ -33,6 +33,14 @@ export class UserLoginComponent {
 
           const decodedTokenSubject =jwtDecode(access_token) as unknown as LoggedInUser;
           console.log(decodedTokenSubject);
+
+          this.userService.user$.set({
+            username: decodedTokenSubject.username,
+            email: decodedTokenSubject.email,
+            roles: decodedTokenSubject.roles
+          })
+          console.log("Signal>>>", this.userService.user$());
+
           this.router.navigate(['user-registration-example']);
         },
         error: (error) => {
