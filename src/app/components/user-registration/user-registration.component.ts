@@ -2,14 +2,17 @@ import { Component, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
+import { MatIconModule } from '@angular/material/icon';
+import {AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/interfaces/user';
+import { MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-user-registration',
   imports: [MatInputModule, MatFormFieldModule,
-             MatButtonModule, ReactiveFormsModule
+             MatButtonModule, ReactiveFormsModule,
+             MatSelectModule, MatIconModule
             ],
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.css'
@@ -31,6 +34,12 @@ export class UserRegistrationComponent {
       area: new FormControl(''),
       road: new FormControl('')  
     }),
+    phone: new FormArray([
+      new FormGroup({
+        number: new FormControl(''),
+        type: new FormControl('')
+      })
+    ]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
     },
@@ -48,6 +57,21 @@ export class UserRegistrationComponent {
     }
     return null;
   }  
+
+  phone = this.registrationForm.get('phone') as FormArray; // This need because the phone is array
+
+  addPhoneNumber(){
+    this.phone.push(
+      new FormGroup({
+      number: new FormControl(''),
+      type: new FormControl('')
+    })
+    );    
+  }
+
+  removePhoneNumber(index: number) {
+    this.phone.removeAt(index);
+  }
 
   onSubmit() {
     // const data = this.registrationForm.value as User; // Because have and the confirm data we will make this below.
